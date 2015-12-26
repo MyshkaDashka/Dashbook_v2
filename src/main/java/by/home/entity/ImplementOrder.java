@@ -5,6 +5,7 @@ package by.home.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -19,9 +20,11 @@ public class ImplementOrder
    @Column(nullable = false)
    private Integer id_store;
    @Column(nullable = false)
-   private String comments;
+   private Integer summa;
    @Column(nullable = false)
    private Integer id_transaction;
+   @Column(nullable = false)
+   private Date date;
    
    /**
     * @roseuid 5669EDF101EC

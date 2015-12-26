@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class CustomUserDetailService {
+public class CustomUserDetailService  implements UserDetailsService  {
     @Autowired
     private UserRepository userRepository;
 

@@ -191,6 +191,12 @@ ul.menu li.last {
     width: 100px;
     height: 120px;
 }
+.box-infoIndex {
+    float: left; /* ������������ �� ������ ���� */
+    margin: 7px 37px 17px 0; /* ������� ������ �������� */
+    width: 200px;
+    height: 200px;
+}
 
 .box-infoFriends-mess {
     float: left; /* ������������ �� ������ ���� */

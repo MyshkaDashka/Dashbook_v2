@@ -7,7 +7,7 @@ public class Literal {
 
     public static final String ERROR_LOGIN_MESSAGE = "User with this username already exists.";
 
-    public static final String MSG_USER_IN_FRIENDS = "User is already in your friends.";
+    public static final String MSG_USER_IN_FRIENDS = "User is already in your friends list.";
 
     public static final String MSG_USER_ADD_YOURSELF = "Loneliness - not a reason to add yourself.";
 

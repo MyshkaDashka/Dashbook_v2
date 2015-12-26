@@ -1,8 +1,6 @@
 package by.home.controller;
 
-import by.home.entity.Message;
-import by.home.entity.Profile;
-import by.home.entity.User;
+import by.home.entity.*;
 import by.home.service.*;
 import by.home.util.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +41,7 @@ public class GeneralController {
     /**
      * @roseuid 5669F0C4020D
      */
-    public GeneralController()
-    {
+    public GeneralController() {
 
     }
 
@@ -60,6 +57,7 @@ public class GeneralController {
         model.addAttribute("countMess", messageService.getCountUnread(id));
         return "../editProfile.jsp";
     }
+
     @RequestMapping(value = "/{id}/editProfile", method = RequestMethod.POST)
     public String editProfile(@PathVariable("id") Integer id,
                               @RequestParam("city") String city,
@@ -73,6 +71,7 @@ public class GeneralController {
         profileService.update(id, city, birthday, phone, study, work, aboutMe);
         return "redirect:/{id}";
     }
+
     /**
      * @return String
      * @roseuid 565C6E620217
@@ -191,10 +190,28 @@ public class GeneralController {
         return "/friends.jsp";
     }
 
+    @RequestMapping(value = "/{id}/payGift/{idGift}", method = RequestMethod.GET)
+    public String buyGift(@PathVariable Integer id,
+                          @PathVariable Integer idGift,
+                          ModelMap model) {
+
+        model.addAttribute("countMess", messageService.getCountUnread(id));
+        model.addAttribute("client", profileService.findProfile(id));
+        model.addAttribute("id", id);
+        Gift gift = giftService.getOneGift(idGift);
+        model.addAttribute("gift", gift);
+        Store store = storeService.getOneStore(idGift);
+        model.addAttribute("store", store);
+
+        return "/orderData.jsp";
+    }
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap model) {
-        return "authorization.jsp";
+        return "index.jsp";
     }
+
     /**
      * @return String
      * @roseuid 565C6EBD0314
@@ -255,8 +272,9 @@ public class GeneralController {
                             @RequestParam("TextMessage") String text,
                             ModelMap model) {
         messageService.save(to, from, title, text, false);
-        return "redirect:/{id}";
+        return "../sendMessSuccess.jsp";
     }
+
 
     /**
      * @return String
@@ -310,7 +328,7 @@ public class GeneralController {
             messageService.update(msg.getId());
         }
         model.addAttribute("msg", msg);
-        model.addAttribute("client",  profileService.findProfile(id));
+        model.addAttribute("client", profileService.findProfile(id));
         model.addAttribute("id", id);
         model.addAttribute("countMess", messageService.getCountUnread(id));
         return "../../messageFrom.jsp";
@@ -320,8 +338,7 @@ public class GeneralController {
      * @return String
      * @roseuid 565D794701A7
      */
-    public String showOrder()
-    {
+    public String showOrder() {
         return null;
     }
 
@@ -329,26 +346,46 @@ public class GeneralController {
      * @return String
      * @roseuid 565D795C0021
      */
-    public String showGifts()
-    {
-        return null;
+    @RequestMapping(value = "/{id}/orderGift", method = RequestMethod.GET)
+    public String showGifts(@PathVariable Integer id, ModelMap model) {
+        Set<Gift> gifts = giftService.getGift();
+        model.addAttribute("countMess", messageService.getCountUnread(id));
+        model.addAttribute("client", profileService.findProfile(id));
+        model.addAttribute("id", id);
+        model.addAttribute("gifts", gifts);
+        return "../orderGift.jsp";
     }
 
     /**
      * @return String
      * @roseuid 565D798A0175
      */
-    public String getOrder()
-    {
-        return null;
+    @RequestMapping(value = "/{id}/pay/{idGift}", method = RequestMethod.POST)
+    public String getOrder(@PathVariable("id") Integer id,
+                           @PathVariable("idGift") Integer idGift,
+                           @RequestParam("count") Integer count,
+                           @RequestParam("number") String number,
+                           @RequestParam("name") String name,
+                           @RequestParam("lastName") String lastName,
+                           @RequestParam("month") String month,
+                           @RequestParam("year") String year,
+                           @RequestParam("cvv") Integer cvv,
+                           ModelMap model) {
+        model.addAttribute("countMess", messageService.getCountUnread(id));
+        model.addAttribute("client", profileService.findProfile(id));
+        model.addAttribute("id", id);
+        Store store = storeService.getOneStore(idGift);
+        Transaction transaction = storeService.addTransaction(store.getPrice()*count);
+        storeService.addImplementsOrder(id,store.getId(),transaction.getId(), transaction.getSum());
+        return "../../addGiftSuccess.jsp";
     }
+
 
     /**
      * @return String
      * @roseuid 565D79920387
      */
-    public String searchOrder()
-    {
+    public String searchOrder() {
         return null;
     }
 
@@ -356,8 +393,7 @@ public class GeneralController {
      * @return String
      * @roseuid 565D7BF2030B
      */
-    public String addNewUser()
-    {
+    public String addNewUser() {
         return null;
     }
 
@@ -365,8 +401,11 @@ public class GeneralController {
      * @return String
      * @roseuid 565D7C040171
      */
-    public String orderingVoice()
-    {
-        return null;
+    @RequestMapping(value = "/{id}/orderVoice", method = RequestMethod.GET)
+    public String orderingVoice(@PathVariable Integer id, ModelMap model) {
+        model.addAttribute("countMess", messageService.getCountUnread(id));
+        model.addAttribute("client", profileService.findProfile(id));
+        model.addAttribute("id", id);
+        return "../orderData.jsp";
     }
 }

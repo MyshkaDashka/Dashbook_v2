@@ -27,6 +27,7 @@
                 <li><a href="/${id}/friend">Friends</a></li>
                 <li><a href="/${id}/message">Messages ${countMess}</a></li>
                 <li><a href="/${id}/search">Search</a></li>
+                <li><a href="/${id}/orderGift">Order Gift</a></li>
                 <li class="last"><a href="j_spring_security_logout">Log out</a></li>
             </ul>
         </div>

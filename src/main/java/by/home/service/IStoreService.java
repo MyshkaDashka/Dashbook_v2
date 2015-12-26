@@ -3,6 +3,7 @@
 package by.home.service;
 
 import by.home.entity.Store;
+import by.home.entity.Transaction;
 
 import java.util.ArrayList;
 
@@ -26,4 +27,10 @@ public interface IStoreService
     * @roseuid 565C6CD20313
     */
    public ArrayList getListAllStore();
+
+   public Store getOneStore(Integer idGift);
+
+   public Transaction addTransaction(Integer sum);
+
+   public void addImplementsOrder(Integer idProfile, Integer idStore, Integer idTransaction, Integer summa);
 }

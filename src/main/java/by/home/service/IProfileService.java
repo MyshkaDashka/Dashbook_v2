@@ -37,7 +37,7 @@ public interface IProfileService
    /**
     * @roseuid 565C53510067
     */
-   public void addFriend(Integer clientId, Integer friendId);
+   public void addFriend(Integer profileId, Integer friendId);
    
    /**
     * @return ClassDiagram.Profile
@@ -49,12 +49,12 @@ public interface IProfileService
     * @return Boolean
     * @roseuid 565C545002D7
     */
-   public Boolean checkFriendAdd(Integer idClient, Integer idFriend);
+   public Boolean checkFriendAdd(Integer idProfile, Integer idFriend);
    
    /**
     * @roseuid 565C545F033C
     */
-   public void removeFriend(Integer clientId, Integer friendId);
+   public void removeFriend(Integer profileId, Integer friendId);
    
    /**
     * @return java.util.ArrayList

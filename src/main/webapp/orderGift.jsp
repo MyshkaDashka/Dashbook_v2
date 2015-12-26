@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: DASHKA
+  Date: 13.12.2015
+  Time: 17:28
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -35,18 +42,14 @@
             <div class="box">
                 <div class="box-top"></div>
                 <div class="box-in">
-                    <h2>Friends ${client.name} ${client.lastName}</h2>
-                    ${removeFriend.name} ${removeFriend.lastName} ${msgFriendsStatus}
-                    <c:forEach items="${friends}" var="friend">
-                        <p><img src="../../${friend.photo}" class="box-infoFriends"></p>
-                        <a href="/${id}/friend/${friend.id}"><h2>${friend.name} ${friend.lastName}</h2></a>
-                        <br/>
-                        <a href="/${id}/removeFriend/${friend.id}">
-                            <button type="button" name="button" class="myButton"> Remove Friend</button>
+                    <c:forEach items="${gifts}" var="gifts">
+                        <p><img src="../../${gifts.photo}" class="box-infoFriends"></p>
+                        <a ><h2>${gifts.name}</h2></a>
+                        <a href="/${id}/payGift/${gifts.id}">
+                            <button type="button" name="button" class="myButton"> Buy this gift</button>
                         </a>
                         <ul class="main-listFriend">
-                            <li><strong>City: </strong> ${friend.city}</li>
-                            <li><strong>Phone: </strong> ${friend.phone}</li>
+                            <li><strong>Description: </strong> ${gifts.description}</li>
                         </ul>
                         <hr>
                     </c:forEach>

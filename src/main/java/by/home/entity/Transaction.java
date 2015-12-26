@@ -20,6 +20,8 @@ public class Transaction
    private Date date;
    @Column(nullable = false)
    private Integer sum;
+   @Column(nullable = false)
+   private Integer checkingAccount;
    
    /**
     * @roseuid 5669EDF00367

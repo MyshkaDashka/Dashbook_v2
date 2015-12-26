@@ -33,6 +33,7 @@
                 <li><a href="/${id}/friend">Friends</a></li>
                 <li><a href="/${id}/message">Messages ${countMess}</a></li>
                 <li><a href="/${id}/search">Search</a></li>
+                <li><a href="/${id}/orderGift">Order Gift</a></li>
                 <li class="last"><a href="j_spring_security_logout">Log out</a></li>
             </ul>
         </div>
@@ -45,12 +46,12 @@
                     </p>
 
                     <h2>${client.name} ${client.lastName}</h2>
-                    <br/>
+
                     <a href="/${id}/addFriend/${client.id}">
-                        <button type="button" name="button" class="myButton"> Add to friends</button>
+                        <button type="button" name="button" class="myButton"> Add to friends </button>
                     </a>
-                    <br/>
-                    ${msgFriendsStatus}
+
+                    <h2>${msgFriendsStatus}</h2>
                     <ul class="main-list">
                         <li><strong>City: </strong> ${client.city}</li>
                         <li><strong>Birthday: </strong> ${client.birthday}</li>

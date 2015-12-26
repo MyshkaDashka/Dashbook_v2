@@ -14,11 +14,11 @@ public interface ProfileFriendRepository  extends JpaRepository<Profile_Friend, 
     * @return java.util.ArrayList
     * @roseuid 565D5BE0027B
     */
-   public ArrayList<Profile_Friend> findByIdProfile(Integer idClient);
+   public ArrayList<Profile_Friend> findByIdProfile(Integer idProfile);
    
    /**
     * @return ClassDiagram.Profile_Friend
     * @roseuid 565D5BF301F8
     */
-   public Profile_Friend findByIdProfileAndIdFriend(Integer idClient, Integer idFriend);
+   public Profile_Friend findByIdProfileAndIdFriend(Integer idProfile, Integer idFriend);
 }

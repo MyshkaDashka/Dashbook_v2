@@ -23,7 +23,7 @@ public class Store
    @Column(nullable = false)
    private Date date;
    @Column(nullable = false)
-   private Integer id_gift;
+   private Integer idGift;
    
    /**
     * @roseuid 5669EDF003E7
